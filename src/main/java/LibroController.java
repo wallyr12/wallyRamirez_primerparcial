@@ -4,6 +4,7 @@
  */
 
 import clases.Libro;
+import clases.LibrosController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/NewServlet"})
 public class LibroController extends HttpServlet {
      Libro libro;
-    LibroController registroAlumno;
-    Libro[] alumnosRegistrados;
+    LibrosController registroLibro;
+    Libro[] LibrosRegistrados;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,12 +44,12 @@ public class LibroController extends HttpServlet {
                 request.getParameter("año")
             );               
             
-            if(registroAlumno==null){
-                 registroAlumno=new LibroController();
+            if(registroLibro==null){
+                 registroLibro=new LibrosController();
             }
            
-            registroAlumno.guardarAlumno(libro);//almacenarlo en el array
-             alumnosRegistrados= registroAlumno.getAlumnos();
+            registroLibro.guardarLibro(libro);//almacenarlo en el array
+             LibrosRegistrados= registroLibro.getLibro();
             
             respuesta.println("<!DOCTYPE html>");
             respuesta.println("<html>");
@@ -67,13 +68,13 @@ public class LibroController extends HttpServlet {
                                 "<th scope=\"col\">CORREO DEL CLIENTE</th> <th scope=\"col\">DIRECCION</th>\n" +
                                 "<th scope=\"col\">ACCION</th> </tr></thead>");  
             respuesta.println("<tbody>");
-            for (int i = 0; i < alumnosRegistrados.length; i++){
-                    if(!alumnosRegistrados[i].getCodigo().isEmpty()){
-                       respuesta.println("<tr><td>" + alumnosRegistrados[i].getCodigo()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getNombre() + "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getTipo()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getEditorial()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getAño()+ "</td>");
+            for (int i = 0; i < LibrosRegistrados.length; i++){
+                    if(!LibrosRegistrados[i].getCodigo().isEmpty()){
+                       respuesta.println("<tr><td>" + LibrosRegistrados[i].getCodigo()+ "</td>");
+                       respuesta.println("<td>" + LibrosRegistrados[i].getNombre() + "</td>");
+                       respuesta.println("<td>" + LibrosRegistrados[i].getTipo()+ "</td>");
+                       respuesta.println("<td>" + LibrosRegistrados[i].getEditorial()+ "</td>");
+                       respuesta.println("<td>" + LibrosRegistrados[i].getAño()+ "</td>");
                        respuesta.println("<td>"
                                + "<button type=\"button\" class=\"btn btn-warning\"></i>Editar</button> "
                                + "<button type=\"button\" class=\"btn btn-danger\">Eliminar</button>"
@@ -89,7 +90,7 @@ public class LibroController extends HttpServlet {
     }
 
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+      // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
