@@ -71,8 +71,9 @@ public class LibroController extends HttpServlet {
                     if(!alumnosRegistrados[i].getCodigo().isEmpty()){
                        respuesta.println("<tr><td>" + alumnosRegistrados[i].getCodigo()+ "</td>");
                        respuesta.println("<td>" + alumnosRegistrados[i].getNombre() + "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getCorreo()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getDireccion()+ "</td>");
+                       respuesta.println("<td>" + alumnosRegistrados[i].getTipo()+ "</td>");
+                       respuesta.println("<td>" + alumnosRegistrados[i].getEditorial()+ "</td>");
+                       respuesta.println("<td>" + alumnosRegistrados[i].getAño()+ "</td>");
                        respuesta.println("<td>"
                                + "<button type=\"button\" class=\"btn btn-warning\"></i>Editar</button> "
                                + "<button type=\"button\" class=\"btn btn-danger\">Eliminar</button>"
